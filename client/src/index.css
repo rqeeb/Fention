@@ -16,7 +16,7 @@ body {
 }
 
 body.light {
-  background-color: #f2efe9;
+  background-color: rgb(254, 231, 226);
   color: rgb(1, 24, 29);
 }
 /* #f2efe9 */

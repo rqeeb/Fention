@@ -2,6 +2,7 @@ import { Moon, Sun, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ChatHeaderProps } from "../types";
 import ChatHeaderChild from "./ChatHeaderChild";
+import "../../index.css";
 
 const ChatHeader = ({ connected }: ChatHeaderProps) => {
   const [darkMode, setDarkMode] = useState(false);
@@ -21,7 +22,13 @@ const ChatHeader = ({ connected }: ChatHeaderProps) => {
           Icon={darkMode ? Sun : Moon}
           onClick={() => setDarkMode(!darkMode)}
         />
-        <ChatHeaderChild Icon={Users} onClick={() => setDarkMode(!darkMode)} />
+        <ChatHeaderChild
+          Icon={Users}
+          onClick={() => {
+            setDarkMode(!darkMode);
+            console.log("changed bg");
+          }}
+        />
       </div>
     </div>
   );
