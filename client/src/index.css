@@ -6,17 +6,22 @@
   line-height: 1.4;
 }
 
-body {
-  background-color: rgb(1, 24, 29);
-  color: #f2efe9;
+:root {
+  --bg: rgb(1, 24, 29);
+  --fg: #f2efe9;
+  --logo-color: #f2efe9;
+}
 
+body {
+  background-color: var(--bg);
+  color: var(--fg);
   transition:
     background-color 0.4s ease,
     color 0.4s ease;
 }
 
 body.light {
-  background-color: rgb(254, 231, 226);
-  color: rgb(1, 24, 29);
+  --bg: #f2efe9;
+  --fg: rgb(1, 24, 29);
+  --logo-color: rgb(1, 24, 29);
 }
-/* #f2efe9 */

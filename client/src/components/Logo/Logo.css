@@ -1,0 +1,7 @@
+.brandLogo {
+  width: 190px;
+  height: auto;
+  color: var(--logo-color);
+  transition: color 0.4s ease;
+  display: block;
+}

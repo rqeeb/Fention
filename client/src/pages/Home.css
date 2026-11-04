@@ -1,0 +1,31 @@
+.homeBox {
+  border-left: 3px solid grey;
+  border-right: 3px solid grey;
+
+  width: 100%;
+  max-width: 850px;
+  height: 100vh;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.columnContainer{
+  display: flex;
+  flex-direction: row;
+  
+  margin-top: 20px;
+}
+
+.leftColumn {
+  flex:5;
+  min-width:0;
+  border: 2px solid red;
+}
+.rightColumn {
+  flex:4;
+  min-width:0;
+}
