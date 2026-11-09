@@ -25,3 +25,25 @@ body.light {
   --fg: rgb(1, 24, 29);
   --logo-color: rgb(1, 24, 29);
 }
+body {
+  --bg: #01181d;
+  --fg: #f2efe9;
+  --muted-color: #9daeb1;
+  --border-color: #4e6468;
+  --panel-bg: #092127;
+  --icon-bg: #193238;
+  --accent: #ff7043;
+
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+body.light {
+  --bg: #fee7e2;
+  --fg: #01181d;
+  --muted-color: #647579;
+  --border-color: #b6bbba;
+  --panel-bg: #fff5f1;
+  --icon-bg: #f1ded8;
+  --accent: #bd491e;
+}

@@ -1,31 +1,135 @@
 .homeBox {
-  border-left: 3px solid grey;
-  border-right: 3px solid grey;
-
   width: 100%;
   max-width: 850px;
-  height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 25px 35px;
 
-  padding: 25px;
+  border-left: 3px solid var(--fg);
+  border-right: 3px solid var(--fg);
 
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
 }
 
-.columnContainer{
-  display: flex;
-  flex-direction: row;
-  
-  margin-top: 20px;
+/* Main layout */
+
+.columnContainer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 38px;
+  padding: 95px 0 110px;
 }
 
-.leftColumn {
-  flex:5;
-  min-width:0;
-  border: 2px solid red;
-}
+.leftColumn,
 .rightColumn {
-  flex:4;
-  min-width:0;
+  min-width: 0;
 }
+
+.columnTagLine {
+  font-size: clamp(2rem, 3.3vw, 2.65rem);
+  font-weight: 600;
+  line-height: 1.13;
+  letter-spacing: -0.5px;
+}
+
+.columnTagLine2 {
+  margin-top: 22px;
+  font-size: 0.97rem;
+  line-height: 1.75;
+  opacity: 0.8;
+}
+
+/* Create and Join */
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.createRoom,
+.joinRoom {
+  padding: 25px;
+  border: 1px solid var(--fg);
+  border-radius: 7px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+
+  background: transparent;
+}
+
+.createRoom h2,
+.joinRoom h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.createRoom p,
+.joinRoom p {
+  font-size: 0.87rem;
+  line-height: 1.65;
+  opacity: 0.75;
+}
+
+.createButton,
+.joinButton {
+  width: 100%;
+  min-height: 43px;
+  margin-top: 10px;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: var(--fg);
+  color: var(--bg);
+
+  border: 1px solid var(--fg);
+  border-radius: 4px;
+
+  font: inherit;
+  font-size: 0.87rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.joinButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.roomCodeInput {
+  width: 100%;
+  height: 49px;
+  min-width: 0;
+  padding: 0 14px;
+
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  border-radius: 4px;
+
+  font: inherit;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+
+  outline: none;
+}
+
+.roomCodeInput::placeholder {
+  color: var(--fg);
+  opacity: 0.45;
+}
+
+/* Content sections */
