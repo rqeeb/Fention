@@ -20,6 +20,6 @@ export interface ChatHeaderProps {
 }
 
 export interface ChatHeaderChildProps {
-  Icon: LucideIcon;
+  Icon: LucideIcon | string;
   onClick: () => void;
 }

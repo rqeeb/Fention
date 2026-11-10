@@ -132,4 +132,141 @@
   opacity: 0.45;
 }
 
-/* Content sections */
+.homeSection {
+  padding: 70px 0 80px;
+  border-top: 1px solid var(--fg);
+}
+
+.homeSection > h2 {
+  font-size: 1.8rem;
+  font-weight: 750;
+  letter-spacing: -0.7px;
+}
+
+.sectionDescription {
+  max-width: 590px;
+  margin-top: 15px;
+  margin-bottom: 35px;
+
+  font-size: 0.95rem;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.step {
+  padding: 21px;
+  border: 1px solid var(--fg);
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.step h3,
+.feature h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.step p,
+.feature p {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  opacity: 0.8;
+}
+
+/* Features */
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.feature {
+  padding: 25px;
+  border: 1px solid var(--fg);
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+/* FAQ */
+
+.faqSection {
+  padding-bottom: 110px;
+}
+
+.faqList {
+  border-top: 1px solid var(--fg);
+}
+
+.faqList details {
+  border-bottom: 1px solid var(--fg);
+  padding: 20px 0;
+}
+
+.faqList summary {
+  cursor: pointer;
+  font-size: 0.98rem;
+  font-weight: 650;
+}
+
+.faqList details[open] summary {
+  margin-bottom: 13px;
+}
+
+.faqList details p {
+  max-width: 680px;
+  font-size: 0.9rem;
+  line-height: 1.85;
+  opacity: 0.8;
+}
+
+.homeFooter {
+  padding: 24px 0 10px;
+  border-top: 1px solid var(--fg);
+  font-size: 0.78rem;
+  opacity: 0.75;
+  display: flex;
+  justify-content: center;
+}
+
+
+@media (max-width: 700px) {
+  .homeBox {
+    padding: 20px 18px;
+  }
+
+  .columnContainer {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 45px;
+    padding: 65px 0 80px;
+  }
+
+  .columnTagLine {
+    font-size: clamp(2rem, 8vw, 2.7rem);
+  }
+
+  .stepsGrid,
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .homeSection {
+    padding: 55px 0 65px;
+  }
+}

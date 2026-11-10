@@ -1,4 +1,3 @@
-import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "../Logo/Logo";
 import ChatHeaderChild from "./HeaderChild";
@@ -17,7 +16,13 @@ const ChatHeader = () => {
       </div>
       <div className="headerChild">
         <ChatHeaderChild
-          Icon={lightMode ? Sun : Moon}
+          Icon={"FAQs"}
+          onClick={() => {
+            console.log("changed bg");
+          }}
+        />
+        <ChatHeaderChild
+          Icon={lightMode ? "Light" : "Dark"}
           onClick={() => setLightMode(!lightMode)}
         />
       </div>
