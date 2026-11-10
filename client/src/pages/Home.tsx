@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import HomeHeader from "../components/Header/HomeHeader";
 import "./Home.css";
+import { useNavigate } from "react-router";
 
 const faqs = [
   {
@@ -57,6 +58,7 @@ const faqs = [
 
 export default function Home() {
   const [roomCode, setRoomCode] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="container">
@@ -92,7 +94,7 @@ export default function Home() {
                   with anyone you'd like to join.
                 </p>
 
-                <button className="createButton" type="button">
+                <button className="createButton" type="button" onClick={()=> navigate("/room/:4")}>
                   Create room
                   <ArrowRight size={17} />
                 </button>

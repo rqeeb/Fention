@@ -17,11 +17,11 @@ const ChatHeader = () => {
       </div>
       <div className="headerChild">
         <ChatHeaderChild
-          Icon={lightMode ? Sun : Moon}
+          Icon={lightMode ? <Sun/> : <Moon/>}
           onClick={() => setLightMode(!lightMode)}
         />
         <ChatHeaderChild
-          Icon={Users}
+          Icon={<Users/>}
           onClick={() => {
             setLightMode(!lightMode);
             console.log("changed bg");

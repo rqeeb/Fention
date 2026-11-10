@@ -1,37 +1,28 @@
 import { WebSocket, WebSocketServer } from "ws";
+import { randomUUID } from "node:crypto";
 
 const wss = new WebSocketServer({ port: 8080 });
 
-interface Users {
-  socket: WebSocket;
-  room: string;
-}
-
-let allSockets: Users[] = [];
+const users = new Map<WebSocket, string>();
 
 wss.on("connection", function (socket) {
-  socket.on("message", (message) => {
-    const parsedData = JSON.parse(message as unknown as string);
+  socket.on("message", (rawMsg) => {
+    let data;
 
-    if (parsedData.type == "join") {
-      allSockets.push({
-        socket,
-        room: parsedData.payload.room,
-      });
-      console.log("User Registered!");
+    try {
+      data = JSON.parse(rawMsg.toString());
+    } catch {
+      socket.send(
+        JSON.stringify({
+          type: "error",
+          payload: { message: "Invalid JSON" },
+        }),
+      );
+      return;
     }
 
-    if (parsedData.type == "message") {
-      const currUserRoom = allSockets.find((x) => x.socket == socket)?.room;
-
-      for (let i = 0; i < allSockets.length; i++) {
-        if (
-          allSockets[i]?.socket != socket &&
-          allSockets[i]?.room == currUserRoom
-        ) {
-          allSockets[i]?.socket.send(parsedData.payload.message);
-        }
-      }
+    if (data.type == "join") {
+      const room = data.payload?.room;
     }
   });
 

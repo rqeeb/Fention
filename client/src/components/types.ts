@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
 export interface Message {
   id: string;
@@ -20,6 +21,6 @@ export interface ChatHeaderProps {
 }
 
 export interface ChatHeaderChildProps {
-  Icon: LucideIcon | string;
+  Icon: ReactNode;
   onClick: () => void;
 }

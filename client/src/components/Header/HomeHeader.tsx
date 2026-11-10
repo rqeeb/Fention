@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Logo from "../Logo/Logo";
 import ChatHeaderChild from "./HeaderChild";
+import { ExternalLink } from "lucide-react";
 
 const ChatHeader = () => {
   const [lightMode, setLightMode] = useState(false);
@@ -17,6 +18,22 @@ const ChatHeader = () => {
       <div className="headerChild">
         <ChatHeaderChild
           Icon={"FAQs"}
+          onClick={() => {
+            console.log("changed bg");
+          }}
+        />
+        <ChatHeaderChild
+          Icon={"Contact Us"}
+          onClick={() => {
+            console.log("fbhg");
+          }}
+        />
+        <ChatHeaderChild
+          Icon={
+            <>
+              Report a bug <ExternalLink size={13} />
+            </>
+          }
           onClick={() => {
             console.log("changed bg");
           }}

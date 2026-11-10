@@ -46,15 +46,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
 }
 
 .themeToggle {
   background: transparent;
   border: none;
   cursor: pointer;
-  /* font-size: 20px; */
   color: inherit;
+  padding: 0;
+}
+
+.headerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 15px;
+  text-decoration: underline grey 1.7px;
+  text-underline-offset: 3px;
 }
 
 /* message list  */
