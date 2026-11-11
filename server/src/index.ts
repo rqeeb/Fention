@@ -23,6 +23,45 @@ wss.on("connection", function (socket) {
 
     if (data.type == "join") {
       const room = data.payload?.room;
+
+      if (typeof room !== "string") {
+        socket.send(
+          JSON.stringify({
+            type: "error",
+            payload: { message: "Invalid room code" },
+          }),
+        );
+        return;
+      }
+
+      users.set(socket, room);
+
+      socket.send(
+        JSON.stringify({
+          type: "joined",
+          payload: { room },
+        }),
+      );
+    }
+
+    if (data.type == "message") {
+      const room = users.get(socket);
+
+      if (!room) return;
+
+      const username = data.payload?.username;
+      const text = data.payload?.text;
+
+      if (
+        typeof username !== "string" ||
+        typeof text !== "string" ||
+        !username.trim() ||
+        !text.trim()
+      ) {
+        return;
+      }
+
+      const outgoingMessage = "JSOn";
     }
   });
 
