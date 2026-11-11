@@ -61,11 +61,27 @@ wss.on("connection", function (socket) {
         return;
       }
 
-      const outgoingMessage = "JSOn";
+      const outgoingMessage = JSON.stringify({
+        type: "message",
+        payload: {
+          id: randomUUID(),
+          username: username.trim(),
+          text: text.trim(),
+          timestamp: new Date().toISOString(),
+        },
+      });
+
+      for (const [client, clientRoom] of users) {
+        if (clientRoom === room && client.readyState == WebSocket.OPEN) {
+          client.send(outgoingMessage);
+        }
+      }
     }
   });
 
-  // socket.on("close", () => {
-  //   allSockets = allSockets.filter((x) => x != socket);
-  // });
+  socket.on("close", () => {
+    users.delete(socket);
+  });
 });
+
+console.log("WebSocket servr sniping or PORT 8080");
