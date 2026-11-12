@@ -1,7 +1,18 @@
 import { WebSocket, WebSocketServer } from "ws";
 import { randomUUID } from "node:crypto";
+import { getRoom } from "./room.js";
+import { app } from "./http.js";
+import { createServer } from "node:http";
 
-const wss = new WebSocketServer({ port: 8080 });
+// const wss = new WebSocketServer({ port: 8080 });
+
+const server = createServer(app);
+
+const wss = new WebSocketServer({ server });
+
+server.listen(8080, () => {
+  console.log("server running on port 8080");
+});
 
 const users = new Map<WebSocket, string>();
 
@@ -21,14 +32,24 @@ wss.on("connection", function (socket) {
       return;
     }
 
+    if (!data || typeof data !== "object" || Array.isArray(data)) {
+      socket.send(
+        JSON.stringify({
+          type: "error",
+          payload: { message: "Invalid message format" },
+        }),
+      );
+      return;
+    }
+
     if (data.type == "join") {
       const room = data.payload?.room;
 
-      if (typeof room !== "string") {
+      if (typeof room !== "string" || !/^\d{6}$/.test(room) || !getRoom(room)) {
         socket.send(
           JSON.stringify({
             type: "error",
-            payload: { message: "Invalid room code" },
+            payload: { message: "Room does not exist or has expired" },
           }),
         );
         return;

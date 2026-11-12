@@ -39,10 +39,10 @@ export function getRoom(roomId: string): Room | null {
 
   if (!room) return null;
 
-  //   if (Date.now() >= room.expiresAt) {
-  //    delteroom(roomId)
-  //     return null;
-  //   }
+    if (Date.now() >= room.expiresAt) {
+     rooms.delete(roomId)
+      return null;
+    }
 
   return room;
 }
