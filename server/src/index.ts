@@ -4,8 +4,6 @@ import { getRoom } from "./room.js";
 import { app } from "./http.js";
 import { createServer } from "node:http";
 
-// const wss = new WebSocketServer({ port: 8080 });
-
 const server = createServer(app);
 
 const wss = new WebSocketServer({ server });
@@ -104,5 +102,3 @@ wss.on("connection", function (socket) {
     users.delete(socket);
   });
 });
-
-console.log("WebSocket servr sniping or PORT 8080");

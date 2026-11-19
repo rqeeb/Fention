@@ -1,4 +1,3 @@
-
 import {
   ArrowRight,
   Plus,
@@ -12,6 +11,7 @@ import { useState } from "react";
 import HomeHeader from "../components/Header/HomeHeader";
 import "./Home.css";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const faqs = [
   {
@@ -60,6 +60,33 @@ export default function Home() {
   const [roomCode, setRoomCode] = useState("");
   const navigate = useNavigate();
 
+  async function createRoom() {
+    try {
+      const response = await axios.post("http://localhost:8080/room");
+
+      const roomId = response.data.roomId;
+      navigate(`/room/${roomId}`);
+      console.log(response.data);
+    } catch (err) {
+      console.error("Error: " + err);
+    }
+  }
+
+  async function joinRoom(roomCode: String) {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/room/${roomCode}`,
+      );
+
+      const roomId = response.data.roomId;
+      
+      navigate(`/room/${roomId}`);
+      console.log(response.data);
+    } catch (err) {
+      console.error("Error: " + err);
+    }
+  }
+
   return (
     <div className="container">
       <div className="homeBox">
@@ -75,10 +102,9 @@ export default function Home() {
               </h1>
 
               <p className="columnTagLine2">
-                Fention is a simple way to have conversations
-                that don't need to last forever. Create a room,
-                invite your friends, and chat in real time.
-                No accounts, no unnecessary setup.
+                Fention is a simple way to have conversations that don't need to
+                last forever. Create a room, invite your friends, and chat in
+                real time. No accounts, no unnecessary setup.
               </p>
             </div>
 
@@ -89,12 +115,15 @@ export default function Home() {
                 <h2>Create a room</h2>
 
                 <p>
-                  Start a temporary group conversation.
-                  Create a room and share the invitation
-                  with anyone you'd like to join.
+                  Start a temporary group conversation. Create a room and share
+                  the invitation with anyone you'd like to join.
                 </p>
 
-                <button className="createButton" type="button" onClick={()=> navigate("/room/:4")}>
+                <button
+                  className="createButton"
+                  type="button"
+                  onClick={createRoom}
+                >
                   Create room
                   <ArrowRight size={17} />
                 </button>
@@ -106,9 +135,8 @@ export default function Home() {
                 <h2>Join a room</h2>
 
                 <p>
-                  Have a room invitation? Enter the
-                  six-digit code below to join an
-                  existing conversation.
+                  Have a room invitation? Enter the six-digit code below to join
+                  an existing conversation.
                 </p>
 
                 <input
@@ -121,9 +149,7 @@ export default function Home() {
                   aria-label="Six-digit room code"
                   value={roomCode}
                   onChange={(e) =>
-                    setRoomCode(
-                      e.target.value.replace(/\D/g, "")
-                    )
+                    setRoomCode(e.target.value.replace(/\D/g, ""))
                   }
                 />
 
@@ -131,6 +157,7 @@ export default function Home() {
                   className="joinButton"
                   type="button"
                   disabled={roomCode.length !== 6}
+                  onClick={() => joinRoom(roomCode)}
                 >
                   Join room
                   <ArrowRight size={17} />
@@ -143,10 +170,9 @@ export default function Home() {
             <h2>How it works</h2>
 
             <p className="sectionDescription">
-              Getting started with Fention is straightforward.
-              You don't need to register or configure anything.
-              Just create a conversation and invite the people
-              you want to talk to.
+              Getting started with Fention is straightforward. You don't need to
+              register or configure anything. Just create a conversation and
+              invite the people you want to talk to.
             </p>
 
             <div className="stepsGrid">
@@ -154,10 +180,9 @@ export default function Home() {
                 <Plus size={23} strokeWidth={1.5} />
                 <h3>1. Create a room</h3>
                 <p>
-                  Start by creating a temporary chat room.
-                  Each room receives its own unique
-                  identifier, allowing conversations
-                  to remain separate from one another.
+                  Start by creating a temporary chat room. Each room receives
+                  its own unique identifier, allowing conversations to remain
+                  separate from one another.
                 </p>
               </div>
 
@@ -165,10 +190,9 @@ export default function Home() {
                 <Link2 size={23} strokeWidth={1.5} />
                 <h3>2. Share the invitation</h3>
                 <p>
-                  Invite friends, classmates, or other
-                  participants by sharing the room link
-                  or six-digit join code. They won't
-                  need to create an account.
+                  Invite friends, classmates, or other participants by sharing
+                  the room link or six-digit join code. They won't need to
+                  create an account.
                 </p>
               </div>
 
@@ -176,10 +200,9 @@ export default function Home() {
                 <MessageCircle size={23} strokeWidth={1.5} />
                 <h3>3. Start chatting</h3>
                 <p>
-                  Once everyone joins, messages appear
-                  in real time across connected devices.
-                  Use the room for discussions, opinions,
-                  or conversations with your group.
+                  Once everyone joins, messages appear in real time across
+                  connected devices. Use the room for discussions, opinions, or
+                  conversations with your group.
                 </p>
               </div>
             </div>
@@ -189,10 +212,9 @@ export default function Home() {
             <h2>Why Fention?</h2>
 
             <p className="sectionDescription">
-              Not every conversation needs an account,
-              a permanent group, or years of stored
-              messages. Fention is being built for
-              the conversations you only need right now.
+              Not every conversation needs an account, a permanent group, or
+              years of stored messages. Fention is being built for the
+              conversations you only need right now.
             </p>
 
             <div className="featuresGrid">
@@ -200,11 +222,9 @@ export default function Home() {
                 <Shield size={23} strokeWidth={1.5} />
                 <h3>No registration required</h3>
                 <p>
-                  Join conversations using a username
-                  rather than creating another online
-                  account. Fention aims to make joining
-                  short-lived discussions as simple
-                  as possible.
+                  Join conversations using a username rather than creating
+                  another online account. Fention aims to make joining
+                  short-lived discussions as simple as possible.
                 </p>
               </div>
 
@@ -212,11 +232,9 @@ export default function Home() {
                 <Clock3 size={23} strokeWidth={1.5} />
                 <h3>Temporary conversations</h3>
                 <p>
-                  Rooms are designed around a limited
-                  lifespan, with a planned maximum
-                  retention period of three days.
-                  This reduces the need to maintain
-                  permanent conversation histories.
+                  Rooms are designed around a limited lifespan, with a planned
+                  maximum retention period of three days. This reduces the need
+                  to maintain permanent conversation histories.
                 </p>
               </div>
             </div>
@@ -226,9 +244,8 @@ export default function Home() {
             <h2>Frequently Asked Questions</h2>
 
             <p className="sectionDescription">
-              Everything you might want to know about
-              creating rooms, joining conversations,
-              and how temporary messaging works.
+              Everything you might want to know about creating rooms, joining
+              conversations, and how temporary messaging works.
             </p>
 
             <div className="faqList">
