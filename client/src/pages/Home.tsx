@@ -78,12 +78,15 @@ export default function Home() {
         `http://localhost:8080/room/${roomCode}`,
       );
 
-      const roomId = response.data.roomId;
-      
+      const roomId = response.data?.id;
+      // console.log(response.data);
+
+      console.log(roomId);
+      console.log("test");
       navigate(`/room/${roomId}`);
-      console.log(response.data);
     } catch (err) {
       console.error("Error: " + err);
+      alert("Error joining room");
     }
   }
 
@@ -124,7 +127,7 @@ export default function Home() {
                   type="button"
                   onClick={createRoom}
                 >
-                  Create room
+                  Create Room
                   <ArrowRight size={17} />
                 </button>
               </section>

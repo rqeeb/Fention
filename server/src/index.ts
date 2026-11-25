@@ -66,7 +66,9 @@ wss.on("connection", function (socket) {
     if (data.type == "message") {
       const room = users.get(socket);
 
-      if (!room) return;
+      if (!room || getRoom(room)) {
+        return;
+      }
 
       const username = data.payload?.username;
       const text = data.payload?.text;
