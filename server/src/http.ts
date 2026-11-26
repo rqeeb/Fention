@@ -34,11 +34,12 @@ app.get("/room/:rooomId", (req, res) => {
   }
   const room = getRoom(roomId);
 
-  if (!room)
-    res.status(404).json({
+  if (!room) {
+    res.status(400).json({
       error: "Room not found or expired",
     });
-  return;
+    return;
+  }
 
   res.status(200).json(room);
 });

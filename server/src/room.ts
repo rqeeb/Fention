@@ -1,9 +1,17 @@
 import { randomInt } from "node:crypto";
 
+interface Message {
+  is: string;
+  username: string;
+  text: string;
+  timestamp: Date;
+}
+
 interface Room {
   id: string;
   createdAt: number;
   expiresAt: number;
+  messages: Message[];
 }
 
 const ROOM_LIFETIME = 72 * 60 * 60 * 1000;
@@ -27,6 +35,7 @@ export function createRoom(): Room {
     id: roomId,
     createdAt: now,
     expiresAt: now + ROOM_LIFETIME,
+    
   };
 
   rooms.set(roomId, room);
@@ -39,10 +48,10 @@ export function getRoom(roomId: string): Room | null {
 
   if (!room) return null;
 
-    if (Date.now() >= room.expiresAt) {
-     rooms.delete(roomId)
-      return null;
-    }
+  if (Date.now() >= room.expiresAt) {
+    rooms.delete(roomId);
+    return null;
+  }
 
   return room;
 }

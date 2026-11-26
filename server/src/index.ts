@@ -66,7 +66,7 @@ wss.on("connection", function (socket) {
     if (data.type == "message") {
       const room = users.get(socket);
 
-      if (!room || getRoom(room)) {
+      if (!room || !getRoom(room)) {
         return;
       }
 

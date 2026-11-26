@@ -59,9 +59,11 @@ const faqs = [
 export default function Home() {
   const [roomCode, setRoomCode] = useState("");
   const navigate = useNavigate();
+  const [createRoomLoading, setCreateRoomLoading] = useState(false);
 
   async function createRoom() {
     try {
+      setCreateRoomLoading(true);
       const response = await axios.post("http://localhost:8080/room");
 
       const roomId = response.data.roomId;
@@ -69,6 +71,8 @@ export default function Home() {
       console.log(response.data);
     } catch (err) {
       console.error("Error: " + err);
+    } finally {
+      setCreateRoomLoading(false);
     }
   }
 
@@ -127,8 +131,14 @@ export default function Home() {
                   type="button"
                   onClick={createRoom}
                 >
-                  Create Room
-                  <ArrowRight size={17} />
+                  {createRoomLoading ? (
+                    "Creating..."
+                  ) : (
+                    <>
+                      Create Room
+                      <ArrowRight size={17} />{" "}
+                    </>
+                  )}
                 </button>
               </section>
 
